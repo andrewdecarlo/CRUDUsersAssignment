@@ -1,0 +1,45 @@
+﻿@page
+@model UI.Pages.DetailsMainModel
+@{
+    ViewData["Title"] = "Mail Order Stuff - Details";
+}
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="card col-8 p-0">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-8 h5">
+                    @Html.DisplayFor(modelItem => @Model.Item.Name)
+                </div>
+                <div class="col-4 text-end">
+                    @Html.DisplayFor(modelItem => @Model.Item.Price)
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            @if (string.IsNullOrEmpty(Model.Item.PictureUrl))
+            {
+                <img src="~/images/PlaceHolder.png" class="card-img" />
+            }
+            else
+            {
+                <img src="~/@Model.Item.PictureUrl" class="img-fluid" />
+            }
+        </div>
+
+        <div class="card-body">
+            @Html.DisplayFor(modelItem => Model.Item.Description)
+        </div>
+
+        <div class="card-footer">
+            <a asp-page="Details" asp-route-id="@Model.Item.ID"
+               class="btn btn-primary">Add to Cart</a>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+<div class="row">
+    <div class="mt-5"></div>
+</div>

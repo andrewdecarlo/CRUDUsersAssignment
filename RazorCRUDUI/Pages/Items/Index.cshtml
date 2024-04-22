@@ -1,0 +1,61 @@
+﻿@page
+@model RazorCRUDUI.Pages.Items.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary btn-sm"><i class="bi bi-plus-circle-fill"></i>  Create New</a>
+</p>
+
+<form>
+    <p>
+        Search: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemModel[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemModel[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemModel[0].Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ItemModel) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>
+                <a asp-page="./Details" asp-route-id="@item.ID" class="btn btn-primary btn-sm"><i class="bi bi-card-list"></i></a>
+                <a asp-page="./Delete" asp-route-id="@item.ID" class="btn btn-warning btn-sm"><i class="bi bi-file-earmark-x"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div class="row">
+    <div class="mt-5"></div>
+</div>
+
+
+

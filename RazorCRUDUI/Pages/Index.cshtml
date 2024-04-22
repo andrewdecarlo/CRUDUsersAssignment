@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Mail Order Stuff - Home page";
+}
+
+<div class="row">
+    <form>
+        <input type="text" asp-for="SearchString" placeholder="Search items" />
+        <input type="submit" value="filter">
+    </form>
+</div>
+
+<div class="row">
+    @foreach (var item in Model.ItemModel)
+    {
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8 h5">
+                            @Html.DisplayFor(modelItem => @item.Name)
+                        </div>
+                        <div class="col-4 text-end">
+                            @Html.DisplayFor(modelItem => @item.Price)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    @if (string.IsNullOrEmpty(@item.PictureUrl))
+                    {
+                        <img src="~/images/PlaceHolder.png" class="card-img" />
+                    }
+                    else
+                    {
+                        <img src="~/@item.PictureUrl" class="card-img" />
+                    }
+                </div>
+
+                <div class="card-body">
+                    @Html.DisplayFor(modelItem => @item.Description)
+                </div>
+
+                <div class="card-body">
+                    <a asp-page="DetailsMain" asp-route-id="@item.ID"
+                       class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="row">
+    <div class="mt-5"></div>
+</div>
